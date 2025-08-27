@@ -8,7 +8,7 @@
 <div align="center">
 
 <!-- todo: Update badges when the package is published on PyPI -->
-[![PyPI version](https://img.shields.io/pypi/v/manifold)](https://pypi.org/project/manifold/)
+<!-- [![PyPI version](https://img.shields.io/pypi/v/manifold)](https://pypi.org/project/manifold/) -->
 [![GitHub: manifold](https://img.shields.io/badge/GitHub-manifold-181717?logo=github)](https://github.com/Yrrrrrf/manifold)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit/)
 <!-- [![Downloads](https://pepy.tech/badge/manifold)](https://pepy.tech/project/manifold) -->
