@@ -1,5 +1,7 @@
 # examples/main_tester.py
-# This script is a placeholder to demonstrate how to run a simple script.
+#
+# This is the main testing script for the manifold library...
+# It contains various tests and examples to demonstrate the library's functionality.
 
 
 def main():
