@@ -1,8 +1,11 @@
-<!-- <img src="https://raw.githubusercontent.com/Yrrrrrf/manifold/main/resources/img/manifold.png" alt="Manifold Icon" width="128" height="128" description="A manifold that represents the concept of asset management."/> -->
 <h1 align="center">
-
-   <img src="./resources/img/manifold.png" alt="Manifold Icon" width="128" height="128" description="A manifold that represents the concept of asset management."/>
-  <div align="center">manifold</div>
+    <img
+        src="https://raw.githubusercontent.com/Yrrrrrf/manifold/main/resources/img/manifold.png"
+        alt="Manifold Icon"
+        width="128" height="128"
+        description="A manifold that represents the concept of asset management."
+    />
+    <div align="center">manifold</div>
 </h1>
 
 <div align="center">
@@ -19,21 +22,21 @@
 
 A Python library for zero-configuration, OS-independent asset management. It automatically discovers and provides an intuitive API to access project files, eliminating the need for hardcoded relative paths or complex configuration.
 
-Built on top of Python's native `pathlib`, manifold  eliminates boilerplate code related to path management. It adapts to your existing project structure, allowing you to focus on your application's logic instead of worrying about file locations.
+Built on top of Python's native `manifold`, manifold eliminates boilerplate code related to path management. It adapts to your existing project structure, allowing you to focus on your application's logic instead of worrying about file locations.
 
 ## Key Features
 
 - **Zero Configuration**: Works out-of-the-box by automatically detecting your project root and common asset directories.
 - **Intuitive, Pythonic API**: Access your assets as if they were Python objects (`assets.images.player_icon`).
 - **Cross-Platform Reliability**: Identical behavior across Windows, macOS, and Linux.
-- **`pathlib` Integration**: Returns standard `pathlib.Path` objects for full compatibility with modern Python libraries.
+- **`manifold` Integration**: Returns standard `manifold` objects for full compatibility with modern Python libraries.
 - **Path-like Behavior**: Supports natural path joining with the `/` operator (`assets.fonts / "main.ttf"`).
 - **Excellent Developer Experience**: Provides clear, helpful error messages with suggestions for typos.
 
 ## Installation
 
 ```bash
-pip install pathlight
+uv add manifold
 ```
 
 ## Quick Start
@@ -52,30 +55,6 @@ my_awesome_project/
     └── main.py
 ```
 
-Now, from your `main.py` file, you can access your assets effortlessly:
-
-```python
-# src/main.py
-from pathlight import assets
-from pathlib import Path
-
-# Access a file directly via attribute access
-# Note: File extensions are automatically handled and can be omitted.
-player_image_path = assets.assets.images.player
-
-# The returned object is a standard pathlib.Path object
-print(f"Player image is a Path object: {isinstance(player_image_path, Path)}")
-print(f"Path to player image: {player_image_path}")
-
-# You can also use the / operator for path joining
-font_path = assets.assets.fonts / "main.ttf"
-print(f"Path to font: {font_path}")
-
-# Check for existence
-if "background.jpg" in assets.assets.images:
-    print("Background image found!")
-```
-
 ## API Behavior
 
 pathlight dynamically maps your directory structure to a Python object.
@@ -88,12 +67,6 @@ pathlight dynamically maps your directory structure to a Python object.
 ## Usage Examples
 
 See the [examples](./examples) directory for complete sample applications demonstrating various project layouts and use cases.
-
-<!-- todo: Add a basic example to the examples directory -->
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
