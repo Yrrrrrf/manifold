@@ -51,7 +51,7 @@ class TestManifoldIntegration(unittest.TestCase):
 
         # 1. Test directory group access
         images_group = assets.images
-        self.assertEqual(images_group._path, self.images_path.resolve())
+        self.assertEqual(images_group, self.images_path.resolve())
 
         # 2. Test file access
         icon_path = assets.images.icon

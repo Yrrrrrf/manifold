@@ -1,22 +1,35 @@
-"""Handles the dynamic, attribute-based access to asset paths."""
+"""
+Handles the dynamic, attribute-based access to asset paths.
+"""
 
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Self
 
 
-class DynamicAssetGroup:
+class DynamicAssetGroup(Path):
     """
-    Represents a directory in the asset hierarchy, enabling dynamic attribute access.
+    Represents a directory or file in the asset hierarchy, enabling dynamic
+    attribute access while behaving exactly like a `pathlib.Path`.
 
     This class is the core of Manifold's intuitive API, translating attribute
     access like `assets.images.player` into file system paths.
     """
 
-    def __init__(self, path: Path):
-        self._path = path
+    def __new__(cls, *args) -> Self:
+        """
+        Constructs the DynamicAssetGroup as a Path-like object.
 
-    def __getattr__(self, name: str) -> Path | DynamicAssetGroup:
+        This method intercepts the arguments to prevent recursion when pathlib
+        internal methods (like joinpath) attempt to create a new instance of
+        this subclass.
+        """
+        # Convert any DynamicAssetGroup instances in args to strings to break recursion
+        str_args = [str(arg) if isinstance(arg, DynamicAssetGroup) else arg for arg in args]
+        return super().__new__(cls, *str_args)
+
+    def __getattr__(self, name: str) -> Self:
         """
         Dynamically access a file or subdirectory within this asset group.
 
@@ -24,40 +37,31 @@ class DynamicAssetGroup:
             name: The name of the file or directory to access.
 
         Returns:
-            A `DynamicAssetGroup` if the name corresponds to a directory,
-            or a `pathlib.Path` object if it's a file.
+            A new `DynamicAssetGroup` instance representing the target path.
         """
+        # Do not interfere with internal attributes of the Path class.
+        if name.startswith("_"):
+            raise AttributeError(
+                f"'{type(self).__name__}' object has no attribute '{name}'"
+            )
         # First, check for a directory with the exact name
-        target_path = self._path / name
+        target_path = self / name
         if target_path.is_dir():
-            return DynamicAssetGroup(target_path)
+            return self.__class__(target_path)
 
         # If not a directory, search for a file with a matching name (extension-insensitive)
-        for item in self._path.iterdir():
-            if item.is_file() and item.stem == name:
-                return item
+        # This is what allows for `assets.images.player` instead of `assets.images.player_png`
+        if self.is_dir():
+            for item in self.iterdir():
+                if item.is_file() and item.stem.lower() == name.lower():
+                    return self.__class__(item)
+
+        # Fallback for cases where the user might include the extension
+        if target_path.exists():
+            return self.__class__(target_path)
 
         # todo: Add typo suggestions and proper error handling with AssetNotFoundError
-        # Fallback for cases where the user might include the extension in the attribute
-        if target_path.exists():
-            return target_path
-            
-        raise AttributeError(f"Asset '{name}' not found in '{self._path}'")
-
-    def __truediv__(self, other: str | Path) -> Path:
-        """
-        Allows joining paths using the `/` operator.
-
-        Example:
-            >>> assets.images / "player.png"
-
-        Args:
-            other: The subpath to join with the current group's path.
-
-        Returns:
-            A new `pathlib.Path` object representing the combined path.
-        """
-        return self._path / other
+        raise AttributeError(f"Asset '{name}' not found in '{self}'")
 
     def __repr__(self) -> str:
-        return f"<DynamicAssetGroup path='{self._path}'>"
+        return f"<DynamicAssetGroup path='{super().__repr__()}'>"
