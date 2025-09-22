@@ -1,5 +1,5 @@
 """
-Central orchestrator for the Manifold asset management system.
+Central orchestrator for the Rune asset management system.
 
 This module is responsible for the singleton pattern, lazy initialization,
 and caching of asset paths.
@@ -13,7 +13,7 @@ from .discovery import DiscoveryManager
 from .group import DynamicAssetGroup
 
 
-class ManifoldLoader:
+class RuneLoader:
     """
     A thread-safe singleton that provides the main entry point (`assets`)
     to the asset management system.
@@ -22,10 +22,10 @@ class ManifoldLoader:
     API to traverse them.
     """
 
-    _instance: ManifoldLoader | None = None
+    _instance: RuneLoader | None = None
     _lock = threading.Lock()
 
-    def __new__(cls) -> ManifoldLoader:
+    def __new__(cls) -> RuneLoader:
         if cls._instance is None:
             with cls._lock:
                 # Double-checked locking
@@ -83,4 +83,4 @@ class ManifoldLoader:
         raise AttributeError(f"'{name}' asset group not found.")
 
     def __repr__(self) -> str:
-        return f"<ManifoldLoader initialized={self._initialized}>"
+        return f"<RuneLoader initialized={self._initialized}>"

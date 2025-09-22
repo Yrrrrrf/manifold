@@ -1,8 +1,8 @@
 """
-Integration tests for the Manifold library.
+Integration tests for the Rune library.
 
 This test suite creates a temporary directory structure to validate
-the core functionality of Manifold in an isolated environment.
+the core functionality of Rune in an isolated environment.
 """
 
 import os
@@ -16,11 +16,11 @@ from pathlib import Path
 project_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(project_root / "src"))
 
-from manifold.loader import ManifoldLoader
+from rune.loader import RuneLoader
 
 
-class TestManifoldIntegration(unittest.TestCase):
-    """Validates end-to-end functionality of the Manifold asset loader."""
+class TestRuneIntegration(unittest.TestCase):
+    """Validates end-to-end functionality of the Rune asset loader."""
 
     def setUp(self):
         """Set up a temporary directory with a mock project structure."""
@@ -44,10 +44,10 @@ class TestManifoldIntegration(unittest.TestCase):
 
     def test_asset_discovery_and_access(self):
         """
-        Tests if Manifold can discover and provide access to a test asset.
+        Tests if Rune can discover and provide access to a test asset.
         """
         # Instantiate a new loader to ensure it discovers the temp environment
-        assets = ManifoldLoader()
+        assets = RuneLoader()
 
         # 1. Test directory group access
         images_group = assets.images

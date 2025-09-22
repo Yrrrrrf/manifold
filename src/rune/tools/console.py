@@ -10,7 +10,7 @@ from rich.console import Console
 from rich.theme import Theme
 
 # Pre-configured theme for consistent styling
-manifold_theme = Theme({
+lib_theme = Theme({
     "info": "cyan",
     "warning": "yellow",
     "error": "bold red",
@@ -20,7 +20,7 @@ manifold_theme = Theme({
 })
 
 # Global console instance to be used throughout the project
-console = Console(theme=manifold_theme)
+console = Console(theme=lib_theme)
 
 
 def log_info(message: str):

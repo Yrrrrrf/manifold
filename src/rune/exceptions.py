@@ -1,13 +1,13 @@
-"""Custom exception types for the Manifold library."""
+"""Custom exception types for the Rune library."""
 
 from pathlib import Path
 
 
-class ManifoldError(Exception):
-    """Base exception for all Manifold errors."""
+class RuneError(Exception):
+    """Base exception for all Rune errors."""
 
 
-class AssetNotFoundError(ManifoldError):
+class AssetNotFoundError(RuneError):
     """Raised when a requested asset cannot be found."""
 
     def __init__(self, asset_name: str, search_path: Path, suggestions: list[str] | None = None):
@@ -22,9 +22,9 @@ class AssetNotFoundError(ManifoldError):
         super().__init__(message)
 
 
-class ProjectRootNotFoundError(ManifoldError):
+class ProjectRootNotFoundError(RuneError):
     """Raised when the project root cannot be determined."""
 
 
-class ConfigurationError(ManifoldError):
+class ConfigurationError(RuneError):
     """Raised when the configuration is invalid."""

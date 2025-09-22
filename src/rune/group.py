@@ -13,7 +13,7 @@ class DynamicAssetGroup(Path):
     Represents a directory or file in the asset hierarchy, enabling dynamic
     attribute access while behaving exactly like a `pathlib.Path`.
 
-    This class is the core of Manifold's intuitive API, translating attribute
+    This class is the core of Rune's intuitive API, translating attribute
     access like `assets.images.player` into file system paths.
     """
 

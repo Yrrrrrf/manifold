@@ -16,6 +16,8 @@ uv.lock
 # some
 .env
 # Ignore all markdown files except for README.md
-**.md
+# **.md
 !README.md
 !**/**/attributions.md
+
+**.md

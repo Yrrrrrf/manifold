@@ -1,29 +1,24 @@
 """
-A simple script to demonstrate the basic functionality of the Manifold library.
+A simple script to demonstrate the basic functionality of the Rune library.
 
 This script showcases how to access nested asset directories and files
-using the intuitive, attribute-based API provided by Manifold and the new
+using the intuitive, attribute-based API provided by Rune and the new
 styled logging system.
 """
 
 import sys
 from pathlib import Path
 
-# Add the source directory to the Python path.
-# This allows us to run this example script directly without installing the package.
-project_root = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(project_root / "src"))
-
-from manifold import assets
-from manifold.tools import console, log_info, log_success, log_warning, log_error
+from rune import assets
+from rune.tools import console, log_info, log_success, log_warning, log_error
 
 def main():
     """
-    Demonstrates accessing various assets using the Manifold API.
+    Demonstrates accessing various assets using the Rune API.
     """
-    console.rule("[bold green]Manifold Asset Access Demonstration[/]", style="green")
+    console.rule("[bold green]Rune Asset Access Demonstration[/]", style="green")
 
-    # Manifold works by discovering a top-level "assets" or "resources" directory.
+    # Rune works by discovering a top-level "assets" or "resources" directory.
     # Let's access the "images" group within it.
     log_info("Accessing a directory group:")
     images_group = assets.images

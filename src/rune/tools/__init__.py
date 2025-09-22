@@ -1,11 +1,11 @@
 """
 This module makes the console logging functions available for easy import.
 
-Instead of importing from `manifold.tools.console`, you can now import directly
-from `manifold.tools`.
+Instead of importing from `rune.tools.console`, you can now import directly
+from `rune.tools`.
 
 Example:
-    from manifold.tools import log_info
+    from rune.tools import log_info
 """
 
 from .console import (
