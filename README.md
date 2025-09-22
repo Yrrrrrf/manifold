@@ -1,6 +1,6 @@
 <h1 align="center">
     <img
-        src="https://raw.githubusercontent.com/Yrrrrrf/rune/main/resources/img/manifold.png"
+        src="https://raw.githubusercontent.com/Yrrrrrf/manifold/main/resources/img/manifold.png"
         alt="Rune Icon"
         width="128" height="128"
         description="A rune that represents the concept of asset management."
@@ -12,7 +12,7 @@
 
 <!-- todo: Update badges when the package is published on PyPI -->
 <!-- [![PyPI version](https://img.shields.io/pypi/v/rune)](https://pypi.org/project/rune/) -->
-[![GitHub: rune](https://img.shields.io/badge/GitHub-rune-181717?logo=github)](https://github.com/Yrrrrrf/rune)
+[![GitHub: rune](https://img.shields.io/badge/GitHub-rune-181717?logo=github)](https://github.com/Yrrrrrf/manifold)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit/)
 <!-- [![Downloads](https://pepy.tech/badge/rune)](https://pepy.tech/project/rune) -->
 
