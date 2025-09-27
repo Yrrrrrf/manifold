@@ -7,6 +7,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Self
 
+from rune.exceptions import AssetNotFoundError
+
 
 class DynamicAssetGroup(Path):
     """
@@ -61,7 +63,7 @@ class DynamicAssetGroup(Path):
             return self.__class__(target_path)
 
         # todo: Add typo suggestions and proper error handling with AssetNotFoundError
-        raise AttributeError(f"Asset '{name}' not found in '{self}'")
+        raise AssetNotFoundError(f"Asset '{name}' not found in '{self}'")
 
     def __repr__(self) -> str:
         return f"<DynamicAssetGroup path='{super().__repr__()}'>"

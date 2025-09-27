@@ -9,6 +9,8 @@ from __future__ import annotations
 import threading
 from pathlib import Path
 
+from rune.exceptions import AssetNotFoundError
+
 from .discovery import DiscoveryManager
 from .group import DynamicAssetGroup
 
@@ -81,6 +83,7 @@ class RuneLoader:
 
         # todo: Raise a proper AssetNotFoundError with suggestions
         raise AttributeError(f"'{name}' asset group not found.")
+        # raise AssetNotFoundError(asset_name=name, search_path="top-level asset directory")
 
     def __repr__(self) -> str:
         return f"<RuneLoader initialized={self._initialized}>"
