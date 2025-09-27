@@ -1,6 +1,6 @@
 [project]
 name = "rune-lib"
-version = "0.0.2"
+version = "0.0.3"
 description = "Zero-configuration, OS-independent asset management for Python"
 readme = "README.md"
 keywords = ["assets", "path-management", "resources", "pathlib", "utility", "developer-tools"]

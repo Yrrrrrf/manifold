@@ -37,10 +37,20 @@ class TestRuneIntegration(unittest.TestCase):
         # Create a dummy file
         (self.images_path / "icon.png").touch()
 
+        # Create a mock themes structure for discovery tests
+        self.themes_path = self.resources_path / "themes"
+        self.themes_path.mkdir()
+        (self.themes_path / "dark.scss").touch()
+        (self.themes_path / "light.scss").touch()
+        (self.themes_path / "config.json").touch() # A non-theme file
+
     def tearDown(self):
         """Clean up the temporary directory and restore the CWD."""
         os.chdir(self.original_cwd)
         shutil.rmtree(self.test_dir)
+
+        # Reset the singleton instance to ensure test isolation
+        RuneLoader._instance = None
 
     def test_asset_discovery_and_access(self):
         """
@@ -62,6 +72,35 @@ class TestRuneIntegration(unittest.TestCase):
         # 3. Test path joining with the '/' operator
         icon_path_join = assets.images / "icon.png"
         self.assertEqual(icon_path_join, expected_path)
+
+    def test_discover_method(self):
+        """Tests the ability to discover assets matching a pattern."""
+        assets = RuneLoader()
+        
+        # Discover all .scss files
+        discovered_themes = assets.themes.discover("*.scss")
+
+        self.assertIsInstance(discovered_themes, dict)
+        self.assertEqual(len(discovered_themes), 2)
+        self.assertIn("dark", discovered_themes)
+        self.assertIn("light", discovered_themes)
+        self.assertNotIn("config", discovered_themes) # Ensure pattern is respected
+        self.assertEqual(discovered_themes["dark"].name, "dark.scss")
+
+    def test_get_method(self):
+        """Tests programmatic asset retrieval using the get() method."""
+        assets = RuneLoader()
+
+        # Test successful retrieval
+        icon_path = assets.images.get("icon")
+        expected_path = (self.images_path / "icon.png").resolve()
+        
+        self.assertIsNotNone(icon_path)
+        self.assertEqual(icon_path, expected_path)
+
+        # Test failed retrieval
+        missing_asset = assets.images.get("non_existent")
+        self.assertIsNone(missing_asset)
 
 
 if __name__ == "__main__":
