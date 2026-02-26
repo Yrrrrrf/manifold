@@ -1,6 +1,6 @@
 [project]
-name = "rune-lib"
-version = "0.0.4"
+name = "manifold"
+version = "0.0.1"
 description = "Zero-configuration, OS-independent asset management for Python"
 readme = "README.md"
 keywords = ["assets", "path-management", "resources", "pathlib", "utility", "developer-tools"]
@@ -23,7 +23,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "rich>=14.1.0"
+    "rich>=14.3.3"
 ]
 
 [project.urls]
