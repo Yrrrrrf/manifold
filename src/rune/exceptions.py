@@ -10,7 +10,9 @@ class RuneError(Exception):
 class AssetNotFoundError(RuneError):
     """Raised when a requested asset cannot be found."""
 
-    def __init__(self, asset_name: str, search_path: Path, suggestions: list[str] | None = None):
+    def __init__(
+        self, asset_name: str, search_path: Path, suggestions: list[str] | None = None
+    ):
         self.asset_name = asset_name
         self.search_path = search_path
         self.suggestions = suggestions or []

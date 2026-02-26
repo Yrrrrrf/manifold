@@ -28,7 +28,9 @@ class DynamicAssetGroup(Path):
         this subclass.
         """
         # Convert any DynamicAssetGroup instances in args to strings to break recursion
-        str_args = [str(arg) if isinstance(arg, DynamicAssetGroup) else arg for arg in args]
+        str_args = [
+            str(arg) if isinstance(arg, DynamicAssetGroup) else arg for arg in args
+        ]
         return super().__new__(cls, *str_args)
 
     def discover(self, pattern: str = "*") -> dict[str, Path]:
@@ -45,11 +47,7 @@ class DynamicAssetGroup(Path):
         if not self.is_dir():
             return {}
 
-        return {
-            item.stem: item
-            for item in self.glob(pattern)
-            if item.is_file()
-        }
+        return {item.stem: item for item in self.glob(pattern) if item.is_file()}
 
     def get(self, name: str) -> Self | None:
         """

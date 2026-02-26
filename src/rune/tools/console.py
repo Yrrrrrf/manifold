@@ -10,14 +10,16 @@ from rich.console import Console
 from rich.theme import Theme
 
 # Pre-configured theme for consistent styling
-lib_theme = Theme({
-    "info": "cyan",
-    "warning": "yellow",
-    "error": "bold red",
-    "success": "green",
-    "debug": "dim",
-    "path": "italic blue",
-})
+lib_theme = Theme(
+    {
+        "info": "cyan",
+        "warning": "yellow",
+        "error": "bold red",
+        "success": "green",
+        "debug": "dim",
+        "path": "italic blue",
+    }
+)
 
 # Global console instance to be used throughout the project
 console = Console(theme=lib_theme)
@@ -48,4 +50,3 @@ def log_success(message: str):
 def log_debug(message: str):
     """Logs a debug message, intended for verbose output."""
     console.print(f"[debug]DEBUG:[/] {message}")
-

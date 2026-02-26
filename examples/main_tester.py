@@ -12,6 +12,7 @@ from pathlib import Path
 from rune import assets
 from rune.tools import console, log_info, log_success, log_warning, log_error
 
+
 def main():
     """
     Demonstrates accessing various assets using the Rune API.
@@ -33,13 +34,17 @@ def main():
     # The file extension is optional but can be included.
     log_info("Accessing a specific file:")
     player_sprite_path = assets.images.sprites.player
-    console.print(f"  - assets.images.sprites.player -> [path]{player_sprite_path}[/path]")
+    console.print(
+        f"  - assets.images.sprites.player -> [path]{player_sprite_path}[/path]"
+    )
     log_success(f"Path exists: {player_sprite_path.exists()}")
 
     # The '/' operator can also be used for path joining, just like with pathlib.
     log_info("Accessing a file using the '/' operator:")
     theme_music_path = assets.audio.music / "theme.mp3"
-    console.print(f"  - assets.audio.music / 'theme.mp3' -> [path]{theme_music_path}[/path]")
+    console.print(
+        f"  - assets.audio.music / 'theme.mp3' -> [path]{theme_music_path}[/path]"
+    )
     log_success(f"Path exists: {theme_music_path.exists()}")
 
     # Accessing a data file.

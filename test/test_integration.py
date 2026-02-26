@@ -42,7 +42,7 @@ class TestRuneIntegration(unittest.TestCase):
         self.themes_path.mkdir()
         (self.themes_path / "dark.scss").touch()
         (self.themes_path / "light.scss").touch()
-        (self.themes_path / "config.json").touch() # A non-theme file
+        (self.themes_path / "config.json").touch()  # A non-theme file
 
     def tearDown(self):
         """Clean up the temporary directory and restore the CWD."""
@@ -76,7 +76,7 @@ class TestRuneIntegration(unittest.TestCase):
     def test_discover_method(self):
         """Tests the ability to discover assets matching a pattern."""
         assets = RuneLoader()
-        
+
         # Discover all .scss files
         discovered_themes = assets.themes.discover("*.scss")
 
@@ -84,7 +84,7 @@ class TestRuneIntegration(unittest.TestCase):
         self.assertEqual(len(discovered_themes), 2)
         self.assertIn("dark", discovered_themes)
         self.assertIn("light", discovered_themes)
-        self.assertNotIn("config", discovered_themes) # Ensure pattern is respected
+        self.assertNotIn("config", discovered_themes)  # Ensure pattern is respected
         self.assertEqual(discovered_themes["dark"].name, "dark.scss")
 
     def test_get_method(self):
@@ -94,7 +94,7 @@ class TestRuneIntegration(unittest.TestCase):
         # Test successful retrieval
         icon_path = assets.images.get("icon")
         expected_path = (self.images_path / "icon.png").resolve()
-        
+
         self.assertIsNotNone(icon_path)
         self.assertEqual(icon_path, expected_path)
 

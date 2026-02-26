@@ -4,6 +4,7 @@ Handles the logic for discovering the project root and asset directories.
 This module implements the "zero-configuration" philosophy by searching for
 common project markers and asset folder names.
 """
+
 from pathlib import Path
 
 

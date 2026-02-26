@@ -4,6 +4,7 @@ Central orchestrator for the Rune asset management system.
 This module is responsible for the singleton pattern, lazy initialization,
 and caching of asset paths.
 """
+
 from __future__ import annotations
 
 import threading
@@ -51,7 +52,7 @@ class RuneLoader:
             # For the MVP, we'll use a simplified discovery process.
             # A more robust implementation will be added in Phase 2.
             project_root = self._discovery_manager.find_project_root()
-            
+
             # Search for common asset directory names
             for dir_name in ["assets", "resources"]:
                 assets_dir = project_root / dir_name
@@ -60,7 +61,7 @@ class RuneLoader:
                         if item.is_dir():
                             self._asset_groups[item.name] = DynamicAssetGroup(item)
                     break  # Stop after finding the first valid directory
-            
+
             self._initialized = True
 
     def __getattr__(self, name: str) -> DynamicAssetGroup:
